@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+{% load static %}
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static "css/styleone.css" %}">
+  <link rel="stylesheet" href="{% static "css/style.css" %}">
+  <link href="https://fonts.googleapis.com/css?family=Spicy+Rice&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Viga&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Fredoka+One&display=swap" rel="stylesheet">
+
+  <style>
+    .navbar-nav {
+      margin-left:auto
+    }
+    ul {
+      list-style: none;
+    }
+    .action{
+      display:flex;
+      color: blue;
+      text-align:
+    }
+  </style>
+  </head>
+  <body>
+    {% block content %}
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Seyahat Website</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Packages</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#">About Us</a>
+          </li>
+          <div class="action">
+            <li class="nav-item"> <a class="nav-link " href="#">Register</a></li>
+            <li class="nav-item"> <a class="nav-link " href="#">login</a></li>
+          </div>
+        </ul>
+        
+      </div>
+    </nav>
+
+
+    <div class="container">
+      <div class="alert alert-primary" role="alert">
+        This is a primary alert—check it out!
+      </div>
+    </div>
+  {% endblock %}
+
+
+</html>
