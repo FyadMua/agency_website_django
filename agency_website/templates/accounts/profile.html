@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+{% block content %}
+<center>
+  
+
+
+ {% comment %}  <div class="hotels-d">
+    <br><br><br><br>
+    <h2>Hotels</h2><br><br>
+    <table class=" shadow-lg rounded">
+      <tr>
+      <th class="p-3 hg1">Hotel Name</th>
+        <th class="p-3 hg1">Date</th>
+        <th class="p-3 hg1">Rooms</th>
+        <th class="p-3 hg1">Cancel</th>
+      </tr>
+    {% for j in hotels %}
+    <tr>
+      <td class="p-3 gd bg-light"><p>{{ j.hotel_name }}</p></td>
+      <td class="p-3 gd bg-light"><p>{{ j.date }}</p></td>
+      <td class="p-3 gd bg-light"><p>{{ j.room }}</p></td>
+      <td class="p-3 gd bg-light"><a class="btn btn-primary"href="/cancelhotel/{{ j.hotel_name }}/{{ j.date }}/{{ j.room }}">CANCEL</a></td>
+
+    </tr>
+
+    {% endfor %}
+    </table><br><br>
+    <a href="{% url 'hotels' %}" class="btn btn-primary">BOOK HOTEL</a>
+    <br><br>
+
+  </div> {% endcomment %}
+  <div class="package-d"><br><br><br><br>
+    <h2>Packages</h2><br><br>
+    <table class=" shadow-lg rounded">
+      <tr>
+      <th class="p-3 hg2">Package Title</th>
+      <th class="p-3 hg2">keywords</th>
+      <th class="p-3 hg2">Start Date</th>
+        <th class="p-3 hg2">price</th>
+        <th class="p-3 hg2">Amount</th>
+        <th class="p-3 hg2">Category</th>
+        <th class="p-3 hg2">Cancel</th>
+      </tr>
+    {% for k in packages %}
+    <tr>
+    <td class="p-3 gd bg-light"><p>{{ k.title }}</p></td>
+    <td class="p-3 gd bg-light"><p>{{ k.keywords }}</p></td>
+    <td class="p-3 gd bg-light"><p>{{ k.startdate }}</p></td>
+    <td class="p-3 gd bg-light"><p>{{ k.price }}</p></td>
+    <td class="p-3 gd bg-light"><p>{{ k.amount }}</p></td>-
+    {% comment %} <td class="p-3 gd bg-light"><a class="btn btn-primary"href="/cancelpackage/{{ k.flight }}/{{ k.seat }}/{{ k.hotel_name }}/{{ k.date }}/{{ k.room }}">CANCEL</a></td> {% endcomment %}
+    </tr>
+    {% endfor %}
+    </table><br><br>
+    {% comment %} <a href="{% url 'package' %}" class="btn btn-primary">BOOK PACKAGE</a> {% endcomment %}
+    <br><br>
+
+  </div>
+
+{% endblock %}
+
+  </body>
+</html>

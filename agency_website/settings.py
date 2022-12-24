@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'seyahat_agency_app',
+    'crispy_forms'
 ]
 
 MIDDLEWARE = [

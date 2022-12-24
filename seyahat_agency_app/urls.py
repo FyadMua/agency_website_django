@@ -1,13 +1,19 @@
 
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.contrib.auth.views import LoginView,LogoutView
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
 from seyahat_agency_app import views
+from seyahat_agency_app.search_forms import UserLoginForm
 
 
 urlpatterns = [
-    path('', views.home_page, name="home")
+    path('', views.home_page, name="home"),
+    path('login/',LoginView.as_view(authentication_form=UserLoginForm),name="login_url"),
+    path('register/',views.registerUser,name="register_url"),
+    path('logout/',LogoutView.as_view(next_page='home'),name="logout"),
+    path('accounts/profile/',views.Dashboard,name='dashboard'),
 ]
 urlpatterns+= staticfiles_urlpatterns()
 urlpatterns=urlpatterns+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
