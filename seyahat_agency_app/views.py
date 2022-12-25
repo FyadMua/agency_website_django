@@ -3,9 +3,10 @@ from seyahat_agency_app.models import PackageModel, Reservation
 
 from seyahat_agency_app.search_forms import ReservationBook, SearchPackageForm, SignUpForm, CategoryModel
 from django.contrib.auth.decorators import login_required
-
+import datetime
 # Create your views here.
 
+DATE_INPUT_FORMATS = '%b-%d-%Y'
 
 def home_page(request):
     search_form = SearchPackageForm(request.POST)
@@ -73,11 +74,13 @@ def packages(request):
 @login_required
 def reservationBook(request, id=None, title=None):
     form = ReservationBook(request.POST)
+
     print("##############reservation")
     if request.method=="POST":
         if form.is_valid():
             amount = form.cleaned_data['amount']
             startdate = form.cleaned_data['startdate']
+            # startdate = datetime.strptime(startdate, format).date()
             note = form.cleaned_data['note']
             # package = PackageModel.objects.filter(title=title)
             package = PackageModel.objects.filter(title__contains= title)
@@ -96,22 +99,23 @@ def reservationBook(request, id=None, title=None):
     return render(request,"bookreservation.html",response)
 
 @login_required
-def PackageSubmit(request,title=None,date=None,amount=None,price=None, note=None):
+def PackageSubmit(request,title=None,amount=None,price=None,date=None, note=None):
+    # <str:title>/<int:amount>/<int:price>/<str:date>/<str:note>
     user = request.user
-    b = Reservation(username_id=user,title=title,startdate=date,amount=amount, note=note, price = price)
+    # date = datetime.datetime.strftime(date,DATE_INPUT_FORMATS)
+    print("#####converting")
+    date = date.replace("."," -")
+    date = date.replace(","," -")
+    date =date.replace(" ", "")
+    dt_obj = datetime.datetime.strptime(date,DATE_INPUT_FORMATS)
+    b = Reservation(username_id=user,title=title,startdate=dt_obj,amount=amount, note=note, price = price)
     b.save()
-    return redirect('dashboard')
+    return redirect('home')
 
 @login_required
 def Dashboard(request):
     user = request.user
     package = Reservation.objects.filter(username_id=user)
-    """   h1 = BookHotel.objects.filter(username_id=user)
-    p1 = BookPackage.objects.filter(username_id=user) """
-
-    """ h={'hotels':h1}
-    print(h) """
-
     package ={'packages':package}
     response= {**package}
     return render(request,'profile.html',response)

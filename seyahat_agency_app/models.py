@@ -57,8 +57,8 @@ class Reservation(models.Model):
     updated_at = models.DateField(auto_now_add=True)
 
      
-    def __str__(self):
-        return self.package_id.title
+    # def __str__(self):
+    #     return self.package_id.title
 
 
 class FAQ(models.Model):
