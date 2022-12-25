@@ -15,6 +15,7 @@ urlpatterns = [
     path('logout/',LogoutView.as_view(next_page='home'),name="logout"),
     path('accounts/profile/',views.Dashboard,name='dashboard'),
     path('package/',views.packages,name='package'),
+    path('bookreservation/<int:id>/<str:title>',views.reservationBook,name='reservation'),
 ]
 urlpatterns+= staticfiles_urlpatterns()
 urlpatterns=urlpatterns+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

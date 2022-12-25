@@ -69,6 +69,11 @@ def packages(request):
         return render(request,"package.html",response)
 
 
+
+def reservationBook(request, id=None, title=None):
+    form = reservationBook(request.Post)
+    return render("bookreservation.html")
+
 @login_required
 def Dashboard(request):
     user = request.user

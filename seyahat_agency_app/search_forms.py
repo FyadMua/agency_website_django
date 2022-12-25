@@ -2,6 +2,8 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.contrib.auth.models import User
 
+from datetime import datetime
+
 from seyahat_agency_app.models import PackageModel, CategoryModel
  # iterable
 Packetler =[
@@ -51,3 +53,15 @@ class UserLoginForm(AuthenticationForm):
 
     class Meta:
         model = User
+
+
+
+class ReservationBook(forms.Form):
+    amount = forms.ChoiceField(choices = Packetler, widget= forms.Select(attrs={'class':'form-class'}))
+    startdate  = forms.DateField( widget= forms.Select(attrs={'class':'date'}))
+    note = forms.ChoiceField(  widget= forms.Select(attrs={'class':'form-class'}))
+
+
+    class Meta:
+        model = PackageModel
+        fields = ('category','destination')

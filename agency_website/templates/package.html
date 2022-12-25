@@ -91,8 +91,8 @@ font-family: 'EB Garamond', serif;
 	
 }
 .control .btn {
-    width: 17rem;
-	transform: translateY(47px);
+    {% comment %} width: 17rem;
+	transform: translateY(47px); {% endcomment %}
 	transition: 0.3s linear;
 	background:  #809fff;
 	border-radius: 5px;
@@ -107,8 +107,10 @@ font-family: 'EB Garamond', serif;
 	
 }
 
-.control .btn:hover{transform: translateY(50px);
-	background: #1a66ff;}
+.control .btn:hover{
+    {% comment %} transform: translateY(50px);
+	background: #1a66ff; {% endcomment %}
+}
 
 .control .btn span {
 	font-family: 'Farsan', cursive;
@@ -224,7 +226,7 @@ font-family: 'EB Garamond', serif;
 		<i class="fa fa-star-o" aria-hidden="true"></i>
 	</span>
 		
-			<p class="information">{{j.keywords}}.<br>{{ j.description }}</p>
+			<p class="information" style="margin-bottom: 4rem;">{{j.keywords}}.<br>{{ j.description }}</p>
 
 		
 		
@@ -233,7 +235,8 @@ font-family: 'EB Garamond', serif;
 	<button class="btn">
 	 <span class="price">{{ j.price }}TL</span>
    <span class="shopping-cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></span>
-   <span class="buy">RZRYN YAP</span>
+   <span class="buy">
+    <a href="/bookreservation/{{ j.id }}/{{ j.title }}" class="btn btn-primary p-10" >RZRYN YAP</a></span>
  </button>
 	
 </div>
