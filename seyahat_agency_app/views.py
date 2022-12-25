@@ -70,6 +70,7 @@ def packages(request):
 
 
 
+@login_required
 def reservationBook(request, id=None, title=None):
     form = ReservationBook(request.POST)
     print("##############reservation")
@@ -81,18 +82,23 @@ def reservationBook(request, id=None, title=None):
             # package = PackageModel.objects.filter(title=title)
             package = PackageModel.objects.filter(title__contains= title)
             #d1=datetime.datetime.strptime(date, "%Y-%m-%d").date()
-            print(package)
-            p = {"Package":package}
-            f = {"form":form}
-            response = {**f,**p}
+            for i in package:
+                price = amount*i.price
+                a = {"amount":amount}
+                note = {"note":note}
+                s = {"startdate":startdate}
+                pr = {"price":price}
+                p = {"Package":package}
+                f = {"form":form}
+            response = {**f,**p,**pr,**s, **a, **note}
             return render(request,"bookreservation.html",response)
     response = {"form":form}
     return render(request,"bookreservation.html",response)
 
 @login_required
-def PackageSubmit(request,flight_num=None,date=None,seat=None):
+def PackageSubmit(request,title=None,date=None,amount=None,price=None, note=None):
     user = request.user
-    b = ReservationBook(username_id=user,flight=flight_num,date=date,seat=seat)
+    b = Reservation(username_id=user,title=title,startdate=date,amount=amount, note=note, price = price)
     b.save()
     return redirect('dashboard')
 
@@ -108,4 +114,4 @@ def Dashboard(request):
 
     package ={'packages':package}
     response= {**package}
-    return render(request,'accounts/profile.html',response)
+    return render(request,'profile.html',response)

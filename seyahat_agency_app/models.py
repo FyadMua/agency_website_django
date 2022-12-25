@@ -52,6 +52,7 @@ class Reservation(models.Model):
     startdate = models.DateField( auto_now_add=False)
     amount = models.IntegerField(default=1)
     note = models.CharField(null=False,max_length=50)
+    price = models.IntegerField(null=True)
     created_at = models.DateField(auto_now_add=True)
     updated_at = models.DateField(auto_now_add=True)
 
