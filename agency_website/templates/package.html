@@ -1,0 +1,269 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+<style>
+
+#container{
+	box-shadow: 0 15px 30px 1px grey;
+	background: rgba(255, 255, 255, 0.90);
+	text-align: center;
+	border-radius: 5px;
+	overflow: hidden;
+	margin: 5em auto;
+	height: 350px;
+	width: 700px;
+  
+	
+}
+
+
+
+.product-details {
+	position: relative;
+	text-align: left;
+	overflow: hidden;
+	padding: 30px;
+	height: 100%;
+	float: left;
+	width: 40%;
+
+}
+
+#container .product-details h1{
+	font-family: 'Bebas Neue', cursive;
+	display: inline-block;
+	position: relative;
+	font-size: 30px;
+	color: #344055;
+	margin: 0;
+	
+}
+
+#container .product-details h1:before{
+	position: absolute;
+	content: '';
+	right: 0%; 
+	top: 0%;
+	transform: translate(25px, -15px);
+	font-family: 'Bree Serif', serif;
+	display: inline-block;
+	background: #ffe6e6;
+	border-radius: 5px;
+	font-size: 14px;
+	padding: 5px;
+	color: white;
+	margin: 0;
+	animation: chan-sh 6s ease infinite;
+
+}
+
+
+
+	
+
+
+.hint-star {
+	display: inline-block;
+	margin-left: 0.5em;
+	color: gold;
+	width: 50%;
+}
+
+
+#container .product-details > p {
+    height:6.5rem;
+font-family: 'EB Garamond', serif;
+	text-align: center;
+	font-size: 18px;
+	color: #7d7d7d;
+	
+}
+.control{
+	position: absolute;
+	{% comment %} bottom: 20%;
+	left: 22.8%; {% endcomment %}
+	
+}
+.control .btn {
+    width: 17rem;
+	transform: translateY(47px);
+	transition: 0.3s linear;
+	background:  #809fff;
+	border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+	cursor: pointer;
+	outline: none;
+	border: none;
+	color: #eee;
+	padding: 0;
+	margin: 0;
+	
+}
+
+.control .btn:hover{transform: translateY(50px);
+	background: #1a66ff;}
+
+.control .btn span {
+	font-family: 'Farsan', cursive;
+	transition: transform 0.3s;
+	display: inline-block;
+  padding: 10px 20px;
+	font-size: 1.2em;
+	margin:0;
+	
+}
+.control .btn .price, .shopping-cart{
+	background: #333;
+	border: 0;
+	margin: 0;
+}
+
+.control .btn .price {
+	transform: translateX(-10%); padding-right: 15px;
+}
+
+.control .btn .shopping-cart {
+	transform: translateX(-100%);
+  position: absolute;
+	background: #333;
+	z-index: 1;
+  left: 0;
+  top: 0;
+}
+
+.control .btn .buy {z-index: 3; font-weight: bolder;}
+
+.control .btn:hover .price {transform: translateX(-110%);}
+
+.control .btn:hover .shopping-cart {transform: translateX(0%);}
+
+
+
+.product-image {
+	transition: all 0.3s ease-out;
+	display: inline-block;
+	position: relative;
+	overflow: hidden;
+	height: 100%;
+	float: right;
+	width: 45%;
+	display: inline-block;
+}
+
+#container img {width: 100%;height: 100%;}
+
+.info {
+    background: rgba(27, 26, 26, 0.9);
+    font-family: 'Bree Serif', serif;
+    transition: all 0.3s ease-out;
+    transform: translateX(-100%);
+    position: absolute;
+    line-height: 1.8;
+    text-align: left;
+    font-size: 105%;
+    cursor: no-drop;
+    color: #FFF;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+}
+
+.info h2 {text-align: center}
+.product-image:hover .info{transform: translateX(0);}
+
+.info ul li{transition: 0.3s ease;}
+{% comment %} .info ul li:hover{transform: translateX(50px) scale(1.3);} {% endcomment %}
+
+.product-image:hover img {transition: all 0.3s ease-out;}
+.product-image:hover img {transform: scale(1.2, 1.2);}
+</style>
+    </head>
+    <body>
+        
+        <h1 class="t">Packages</h1>
+
+        {% for j in Packages %}
+
+{% comment %} <div class="package">
+  <div class="container">
+    <div class="row shadow-lg p-3 mt-5 mb-5 rounded">
+      <div class="col-md-4 ">
+        <img class="h-img shadow-lg" src="/media/{{ j.image }}" alt="image">
+      </div>
+      <div class="col-md-8">
+        <p class="h-name">{{j.title}}</p>
+        <p class="h-name">{{j.category.title}}</p>
+        <p class="h-add">{{j.keywords}}.<br>{{ j.description }} </p>
+        <p class="h-price">{{ j.price }}TL</p>
+        <p class="h-pricex">/Person</p>
+        <p class="h-am">{{ j.status}}</p>>
+      </div>
+    </div>
+  </div>
+  </div> {% endcomment %}
+
+
+  <div id="container">	
+	
+	<div class="product-details">
+		
+	<h1>{{j.title}}</h1>
+	<span class="hint-star star">
+		<i class="fa fa-star" aria-hidden="true"></i>
+		<i class="fa fa-star" aria-hidden="true"></i>
+		<i class="fa fa-star" aria-hidden="true"></i>
+		<i class="fa fa-star" aria-hidden="true"></i>
+		<i class="fa fa-star-o" aria-hidden="true"></i>
+	</span>
+		
+			<p class="information">{{j.keywords}}.<br>{{ j.description }}</p>
+
+		
+		
+<div class="control">
+	
+	<button class="btn">
+	 <span class="price">{{ j.price }}TL</span>
+   <span class="shopping-cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></span>
+   <span class="buy">RZRYN YAP</span>
+ </button>
+	
+</div>
+			
+</div>
+	
+<div class="product-image">
+	
+	<img src="{% static "images/sapanca.jpg" %}"alt="">
+	
+
+<div class="info">
+	<h2> Description</h2>
+	<ul>
+		<li><strong>destination : </strong>{{ j.destination }}</li>
+		<li><strong>status : </strong>{{ j.status }}</li>
+		<li><strong>detail: </strong>{{ j.detail }}</li>
+-
+		
+	</ul>
+</div>
+</div>
+
+</div>
+{% endfor %}
+
+<br><br><br><br>
+
+{% endblock %}
+
+  </body>
+</html>
+

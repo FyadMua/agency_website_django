@@ -19,7 +19,8 @@
         {{form.as_p}}
         <button class="btn btn-primary">SEARCH</button>
       </form> {% endcomment %}
-      <form class="form-inline">
+      <form class="form-inline" action="{% url 'package' %}" method="POST">
+        {% csrf_token %}
         {% comment %} <div class="form-group mb-2"> {% endcomment %}
         <div class="control">
           {{ form.category }}

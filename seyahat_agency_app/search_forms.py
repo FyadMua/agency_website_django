@@ -5,11 +5,11 @@ from django.contrib.auth.models import User
 from seyahat_agency_app.models import PackageModel, CategoryModel
  # iterable
 Packetler =[
-    ("Öğrenci", "Öğenci Paketleri"),
-    ("Aile", "Aile Paketleri"),
-    ("Kiş", "Kiş Paketleri"),
-    ("yilbaşi", "yilbaşi Paketleri"),
-    ("Yaz", "Yaz Paketleri"),
+    ("Öğenci Paketleri", "Öğenci Paketleri"),
+    ("Aile Paketleri", "Aile Paketleri"),
+    ("Kiş Paketleri", "Kiş Paketleri"),
+    ("yilbaşi Paketleri", "yilbaşi Paketleri"),
+    ("Yaz Paketleri", "Yaz Paketleri"),
 ]
 # creating a form
 class SearchPackageForm(forms.Form):

@@ -9,6 +9,7 @@ from datetime import datetime
 
 
 class CategoryModel(models.Model):
+    # id = models.Field(primary_key = True)
     title = models.TextField(null=True)
     keywords =  models.TextField(null=True)
     description =  models.TextField(null=True)
@@ -25,6 +26,7 @@ class PackageModel(models.Model):
     title = models.TextField(null=True)
     keywords =  models.TextField(null=True)
     description =  models.TextField(null=True)
+    destination = models.CharField(max_length=200,null=True)
     status = models.BooleanField(False)
     detail = models.TextField(null=True)
     category_id = models.ForeignKey(CategoryModel,on_delete=models.CASCADE)
