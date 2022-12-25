@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="fp">
+<div class="container form">
+  <h1 class="tr">PACKAGES</h1>
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6 shadow-lg p-3 mb-5 bg-white rounded">
+  <form class="form-group" action="" method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button class="btn btn-primary">SEARCH</button>
+  </form></div>
+  <div class="col-md-3"></div>
+</div>
+</div>
+
+
+<h1 class="t">&nbsp&nbsp&nbspPackage</h1>
+{% for j in Package %}
+
+<div class="hotel">
+  <div class="container">
+    <div class="row">
+    {% comment %} {% if havailability == "available" %} {% endcomment %}
+    <div class=" shadow-lg mt-5 mb-5 rounded">
+        <img src="{% static "images/sapanca.jpg" %}"alt="">
+    </div>
+    <div class=" col-6  shadow-lg mt-5 mb-5 rounded">
+        <p class="roomremu">Bulunan Paketi : {{j.title}}</p>
+        <p class="h-name"></p>
+        <p class="h-price">Toplam Fiyat: {{ price }} TL</p>
+        {% comment %} <p class="h-am">{{ j.amenities}}</p> {% endcomment %}
+    </div>
+    {% comment %} {% endif %} {% endcomment %}
+  </div>
+  </div>
+
+{% endfor %}<br>
+
+{% for i in Package %}
+<div  style="margin: auto;
+text-align: center;
+display: flex;
+justify-content: center;
+height: 36px;">
+    <a class="btn btn-primary" href="/packagebook/{{ i.title }}/{{ amount }}/{{ price }}/{{startdate}}/{{note}}">RESERVAZYON YAP</a>
+    {% comment %} packagebook/<str:title>/<str:date>/<int:amount>/<int:price>/<str:note> {% endcomment %}
+    <br><br>&nbsp&nbsp&nbsp&nbsp&nbsp<a href="{{request.META.HTTP_REFERER}}" class="btn btn-primary">Go back</a>
+
+</div>
+{% endfor %}
+
+<br><br><br> 
+{% endblock %}
