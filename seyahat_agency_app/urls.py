@@ -16,6 +16,7 @@ urlpatterns = [
     path('accounts/profile/',views.Dashboard,name='dashboard'),
     path('package/',views.packages,name='package'),
     path('bookreservation/<int:id>/<str:title>',views.reservationBook,name='reservation'),
+    path('packagebook/<str:flight_num>/<str:date>/<int:seat>',views.PackageSubmit,name='packagebook'),
 ]
 urlpatterns+= staticfiles_urlpatterns()
 urlpatterns=urlpatterns+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

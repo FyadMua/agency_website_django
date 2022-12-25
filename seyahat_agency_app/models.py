@@ -46,7 +46,7 @@ class Image(models.Model):
     def __str__(self) -> str:
         return self.title
 class Reservation(models.Model):
-    
+    title = models.CharField(null=False,max_length=50)
     username_id = models.ForeignKey(User,on_delete=models.CASCADE)
     package_id = models.ForeignKey(PackageModel,on_delete=models.CASCADE)
     startdate = models.DateField( auto_now_add=False)

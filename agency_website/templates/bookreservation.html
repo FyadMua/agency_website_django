@@ -1,4 +1,4 @@
-{% extends 'index.html' %}
+{% extends 'base.html' %}
 {% block content %}
 <div class="fp">
 <div class="container form">
@@ -14,7 +14,7 @@
   <div class="col-md-3"></div>
 </div>
 </div>
-<div class="fo shadow-lg p-5 rounded">
+{% comment %} <div class="fo shadow-lg p-5 rounded">
   <p class="fot">Your Flight Options</p>
 {% for k in allflights %}
 <p><ion-icon name="airplane-outline"></ion-icon>&nbsp&nbsp&nbsp{{k.flight_num}}</p>
@@ -72,21 +72,21 @@
 {% endfor %}
 <br><br><br><br>
 
-
-<h1 class="t">&nbsp&nbsp&nbspHOTEL</h1>
-{% for j in Hotels %}
+{% endcomment %}
+<h1 class="t">&nbsp&nbsp&nbspPackage</h1>
+{% for j in Package %}
 
 <div class="hotel">
   <div class="container">
-    {% if havailability == "available" %}
+    {% comment %} {% if havailability == "available" %} {% endcomment %}
     <div class="row shadow-lg p-3 mt-5 mb-5 rounded">
       <div class="col-md-4 ">
-        <img class="h-img shadow-lg" src="/media/{{ j.image1 }}" alt="image">
+        {% comment %} <img class="h-img shadow-lg" src="/media/{{ j.image1 }}" alt="image"> {% endcomment %}
       </div>
-      <div class="col-md-8">
+      {% comment %} <div class="col-md-8">
         <p class="roomrem">Available Rooms: {{ roomrem }}</p>
         <p class="h-name">{{j.hotel_name}}</p>
-        <p class="h-add">{{j.hotel_address}}.<br>{{ j.distfromap }} KM from nearest airport.</p>
+        <p class="h-add">{{j.keywords}}.<br>{{ j.distfromap }} KM from nearest airport.</p>
         <p class="h-price">{{ priceh }}*</p>
         <p class="h-pricex">/night</p>
         <p class="h-am">{{ j.amenities}}</p>
@@ -98,50 +98,42 @@
         {% endwith %}
         </div>
       </div>
-    </div>
-    {% endif %}
-    {% if havailability == "unavailable" %}
-    <h1 class="fffu">BOOKED</h1>
+    </div> {% endcomment %}
+    {% comment %} {% endif %}
+    {% if havailability == "unavailable" %} {% endcomment %}
+    <h1 class="fffu">RESERVAZYON YAP</h1>
     <div class="row shadow-lg p-3 mt-5 mb-5 rounded">
       <div class="col-md-4 ">
-        <img class="h-img shadow-lg" src="/media/{{ j.image1 }}" alt="image">
+        {% comment %} <img class="h-img shadow-lg" src="/media/{{ j.image1 }}" alt="image"> {% endcomment %}
       </div>
       <div class="col-md-8">
-        <p class="roomremu">Available Rooms: {{ roomrem }}</p>
-        <p class="h-name">{{j.hotel_name}}</p>
-        <p class="h-add">{{j.hotel_address}}.<br>{{ j.distfromap }} KM from nearest airport.</p>
-        <p class="h-price">{{ priceh }}*</p>
+        <p class="roomremu">Available Rooms:</p>
+        <p class="h-name"></p>
+        <p class="h-add"><br> KM from nearest airport.</p>
+        <p class="h-price">{{ j.price }}*</p>
         <p class="h-pricex">/night</p>
-        <p class="h-am">{{ j.amenities}}</p>
-        <div class="h-rate">
-        {% with ''|center:j.hotel_rating as range %}
-          {% for _ in range %}
-              ★
-          {% endfor %}
-        {% endwith %}
-        </div>
-      </div>s
+        {% comment %} <p class="h-am">{{ j.amenities}}</p> {% endcomment %}
+      </div>
     </div>
-    {% endif %}
+    {% comment %} {% endif %} {% endcomment %}
   </div>
   </div>
 
 {% endfor %}<br>
 
-{% for i in Flights %}
-{% for j in Hotels %}
-{% if flavailability == "available" %}
-{% if havailability == "available" %}
-<a class="btn btn-primary" href="/userpackage/{{ i.flight_num }}/{{ j.hotel_name }}/{{ date }}/{{roomreq}}/{{seatsreq}}">C O N F I R M</a>
+{% for i in Package %}
+{% comment %} {% if flavailability == "available" %}
+{% if havailability == "available" %} {% endcomment %}
+<a class="btn btn-primary" href="/packagebook/{{ i.title }}/{{ i.startdate }}/{{ amount }}/{{price}}/{{note}}">C O N F I R M</a>
 <br><br>&nbsp&nbsp&nbsp&nbsp&nbsp<a href="{{request.META.HTTP_REFERER}}" class="btn btn-primary">Go back</a>
-{% endif %}
-{% endif %}
+{% comment %} {% endif %} {% endcomment %}
+{% comment %} {% endif %}
 {% if flavailability == "unavailable" %}
-{% if havailability == "unavailable" %}
+{% if havailability == "unavailable" %} {% endcomment %}
 <a href="{{request.META.HTTP_REFERER}}" class="btn btn-primary">Go back</a>
-{% endif %}
-{% endif %}
+{% comment %} {% endif %}
+{% endif %} {% endcomment %}
 {% endfor %}
-{% endfor %}
-<br><br><br>
+
+<br><br><br> 
 {% endblock %}

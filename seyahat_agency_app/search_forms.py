@@ -1,10 +1,16 @@
 from django import forms
+from django.conf import settings
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.contrib.auth.models import User
 
 from datetime import datetime
 
+from django.forms import ModelForm
+
 from seyahat_agency_app.models import PackageModel, CategoryModel
+
+DATE_INPUT_FORMATS = ['%d-%m-%Y']
+
  # iterable
 Packetler =[
     ("Öğenci Paketleri", "Öğenci Paketleri"),
@@ -56,12 +62,14 @@ class UserLoginForm(AuthenticationForm):
 
 
 
-class ReservationBook(forms.Form):
-    amount = forms.ChoiceField(choices = Packetler, widget= forms.Select(attrs={'class':'form-class'}))
-    startdate  = forms.DateField( widget= forms.Select(attrs={'class':'date'}))
-    note = forms.ChoiceField(  widget= forms.Select(attrs={'class':'form-class'}))
+class ReservationBook(forms.ModelForm):
+    amount = forms.IntegerField(widget=forms.NumberInput(attrs={'class' : 'fs-form form-control','placeholder':'Kişi sayısı'}),required=False)
+    # startdate = forms.DateField(widget= forms.Select(attrs={'class':'date'}))
+    startdate = forms.DateField(label='Start Date', widget=forms.SelectDateWidget)
+    # label='Date of birth', widget=forms.SelectDateWidget(years=YEAR_CHOICES, input_formats= DATE_INPUT_FORMATS)
+    note =forms.CharField(widget=forms.TextInput(attrs={'class' : 'fs-form form-control','placeholder':'Note'}),required=False)
 
 
     class Meta:
         model = PackageModel
-        fields = ('category','destination')
+        fields = ("amount", "startdate","note")

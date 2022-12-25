@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render
 from seyahat_agency_app.models import PackageModel, Reservation
 
-from seyahat_agency_app.search_forms import SearchPackageForm, SignUpForm, CategoryModel
+from seyahat_agency_app.search_forms import ReservationBook, SearchPackageForm, SignUpForm, CategoryModel
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -71,8 +71,30 @@ def packages(request):
 
 
 def reservationBook(request, id=None, title=None):
-    form = reservationBook(request.Post)
-    return render("bookreservation.html")
+    form = ReservationBook(request.POST)
+    print("##############reservation")
+    if request.method=="POST":
+        if form.is_valid():
+            amount = form.cleaned_data['amount']
+            startdate = form.cleaned_data['startdate']
+            note = form.cleaned_data['note']
+            # package = PackageModel.objects.filter(title=title)
+            package = PackageModel.objects.filter(title__contains= title)
+            #d1=datetime.datetime.strptime(date, "%Y-%m-%d").date()
+            print(package)
+            p = {"Package":package}
+            f = {"form":form}
+            response = {**f,**p}
+            return render(request,"bookreservation.html",response)
+    response = {"form":form}
+    return render(request,"bookreservation.html",response)
+
+@login_required
+def PackageSubmit(request,flight_num=None,date=None,seat=None):
+    user = request.user
+    b = ReservationBook(username_id=user,flight=flight_num,date=date,seat=seat)
+    b.save()
+    return redirect('dashboard')
 
 @login_required
 def Dashboard(request):
