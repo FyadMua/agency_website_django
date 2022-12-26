@@ -119,3 +119,6 @@ def Dashboard(request):
     package ={'packages':package}
     response= {**package}
     return render(request,'profile.html',response)
+
+def about(request):
+    return render(request, 'About.html' )

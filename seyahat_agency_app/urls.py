@@ -17,6 +17,8 @@ urlpatterns = [
     path('bookreservation/<int:id>/<str:title>',views.reservationBook,name='reservation'),
     # path('packagebook/<str:title>/<str:date>/<int:amount>/<int:price><str:note>',views.PackageSubmit,name='packagebook'),
     path('packagebook/<str:title>/<int:amount>/<int:price>/<str:date>/<str:note>',views.PackageSubmit,name='ConfirmCancelPackage'),
+    path('about',views.about,name='about'),
+
 ]
 urlpatterns+= staticfiles_urlpatterns()
 urlpatterns=urlpatterns+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

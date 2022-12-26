@@ -43,7 +43,7 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="#">About Us</a>
+            <a class="nav-link" href="{% url 'about' %}">About Us</a>
           </li>
           <div class="action">
            
@@ -53,6 +53,7 @@
             {% else %}
             <li class="nav-item"> <a class="nav-link " href="{% url 'register_url' %}">Register</a></li>
             <li class="nav-item"> <a class="nav-link " href="{% url 'login_url' %}">login</a></li>
+            {% comment %} <li class="nav-item"> <a class="nav-link " href="{% url 'about' %}">About</a></li> {% endcomment %}
             {% endif %}
           </div>
         </ul>
@@ -62,7 +63,7 @@
 
 
     <div class="alert alert-primary" role="alert">
-      Yılbaşı Packet fırsatları Kaçırmayın!
+      DUYURU-Yılbaşı Packet fırsatları Kaçırmayın! faydalanmak icin packges kismina tiklayarak ulasabilirsiniz...
     </div>
       {% block content %}
       

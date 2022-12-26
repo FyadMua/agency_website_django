@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.conf import settings
 from django.core.validators import MinValueValidator, MaxValueValidator
 # Create your models here.
-from datetime import datetime
+from datetime import datetime, date
 
 # 
 
